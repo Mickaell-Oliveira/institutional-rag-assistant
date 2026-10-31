@@ -1,0 +1,15 @@
+# Core Orchestration & LLM
+langchain>=0.3.0
+langchain-community>=0.3.0
+langchain-core>=0.3.0
+langchain-text-splitters>=0.3.0
+langchain-google-genai>=2.0.0
+langchain-chroma>=0.1.4
+
+# Vector Store & PDF Extraction
+chromadb>=0.5.0
+pymupdf>=1.24.0
+
+# UI & Environment
+streamlit>=1.39.0
+python-dotenv>=1.0.1
