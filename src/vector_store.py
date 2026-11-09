@@ -4,9 +4,15 @@ import chromadb
 from langchain_chroma import Chroma
 from langchain_core.documents import Document
 from langchain_core.embeddings import Embeddings
+from langchain_core.vectorstores import VectorStoreRetriever
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
-from src.config import CHROMA_PERSIST_DIR, EMBEDDING_MODEL, get_gemini_api_key
+from src.config import (
+    CHROMA_PERSIST_DIR,
+    EMBEDDING_MODEL,
+    RETRIEVER_K,
+    get_gemini_api_key,
+)
 
 COLLECTION_NAME = "institutional_docs"
 
@@ -78,3 +84,24 @@ def load_vector_store(
         embedding_function=embeddings,
         collection_name=COLLECTION_NAME,
     )
+
+
+def get_retriever(
+    k: int = RETRIEVER_K,
+    vector_store: Chroma | None = None,
+    persist_directory: str | Path = CHROMA_PERSIST_DIR,
+    embedding_function: Embeddings | None = None,
+) -> VectorStoreRetriever:
+    """Return a similarity retriever configured for top-k chunks."""
+    if k <= 0:
+        raise ValueError("k must be greater than 0.")
+
+    store = vector_store or load_vector_store(
+        persist_directory=persist_directory,
+        embedding_function=embedding_function,
+    )
+    return store.as_retriever(
+        search_type="similarity",
+        search_kwargs={"k": k},
+    )
+
