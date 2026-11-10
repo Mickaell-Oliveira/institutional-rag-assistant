@@ -14,11 +14,11 @@ _default_chroma_dir = str(DATA_DIR / "chroma_db")
 CHROMA_PERSIST_DIR: str = os.getenv("CHROMA_PERSIST_DIR", _default_chroma_dir).strip() or _default_chroma_dir
 
 # Model and retrieval settings
-LLM_MODEL: str = os.getenv("GEMINI_LLM_MODEL", "gemini-2.5-flash").strip() or "gemini-2.5-flash"
+LLM_MODEL: str = os.getenv("GEMINI_LLM_MODEL", "gemini-3.5-flash").strip() or "gemini-3.5-flash"
 LLM_TEMPERATURE: float = float(os.getenv("GEMINI_LLM_TEMPERATURE", "0.0"))
 EMBEDDING_MODEL: str = (
-    os.getenv("GEMINI_EMBEDDING_MODEL", "models/text-embedding-004").strip()
-    or "models/text-embedding-004"
+    os.getenv("GEMINI_EMBEDDING_MODEL", "models/gemini-embedding-001").strip()
+    or "models/gemini-embedding-001"
 )
 
 CHUNK_SIZE: int = int(os.getenv("CHUNK_SIZE", "1000"))
