@@ -87,14 +87,6 @@ def render_sidebar():
         st.session_state.messages = []
         st.rerun()
 
-    st.sidebar.markdown("---")
-    st.sidebar.markdown(
-        "**Privacy by Design:**\n"
-        "- Documentos em `data/raw_private/` e o banco vetorial local são 100% isolados pelo `.gitignore`.\n"
-        "- Respostas estritamente ancoradas nos trechos oficiais recuperados."
-    )
-
-
 def main():
     render_sidebar()
 
